@@ -1,0 +1,19 @@
+---
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: frontend/docker/development/nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/app
+#    depends_on:
+#      - php-fpm
+#
+#  php-fpm:
+#    build:
+#      context: ./docker/development/php-fpm
+#    volumes:
+#      - ./site:/app
