@@ -1,0 +1,11 @@
+---
+# handlers file for docker
+-
+#-   name: Start docker on boot
+#    systemd:
+#        name: docker
+#        state: started
+#        enabled: yes
+
+- name: Restart docker
+  service: name=docker state=restarted

@@ -1,0 +1,17 @@
+---
+
+- name: Install Certbot and packages
+  yum:
+    name: ['certbot', 'python2-certbot-nginx', 'httpd-tools']
+    #apache2-utils - Can use in docker too and do not install
+    state: latest
+
+
+- name: Copy Certbot configuration
+  copy:
+      src: files/cli.ini
+      dest: /etc/letsencrypt/cli.ini
+      owner: root
+      group: root
+      mode: 0644
+

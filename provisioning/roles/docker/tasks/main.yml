@@ -1,0 +1,50 @@
+---
+# tasks file for docker
+
+- name: Install  packages Centos 7
+  yum: name={{ item }} state=latest
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+#    - lvm2
+  when: ansible_distribution_major_version == "7"
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install  Docker packages Centos 7
+  yum: name={{ item }} state=latest
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  when: ansible_distribution_major_version == "7"
+  notify: Restart docker
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add user ruslan to docker group
+  user:
+    name: ruslan
+    groups: docker
+    append: yes
+
+- name: Download and install Docker Compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.25.0/docker-compose-Linux-x86_64
+    dest: /usr/bin/docker-compose
+    group: docker
+    mode: 0755
+
+- name: Set periodic Docker prune, Delete all garbadge older than 30days
+  cron:
+    name: docker-prune
+    job: 'docker system prune -f --filter "until=$((30*24))h"'
+    minute: '0'
+    hour: '1'
