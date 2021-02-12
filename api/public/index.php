@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 
+use App\Http\Action\HomeAction;
 use DI\Container;
 use DI\ContainerBuilder;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -23,17 +24,19 @@ $builder->addDefinitions([
 $container = $builder->build();
 
 $app = AppFactory::createFromContainer($container);
-//$app = AppFactory::create();
-//$app->addErrorMiddleware(true, true, true);
-//$app->addErrorMiddleware((bool)getenv('APP_DEBUG'), true, true);
+
 $app->addErrorMiddleware($container->get('config')['debug'], true, true);
 
 
-$app->get('/', function (Request $request, Response $response, $args){
+/*$app->get('/', function (Request $request, Response $response, $args){
 //    throw new HttpNotFoundException();
 //    throw new RuntimeException('Error');
     $response->getBody()->write('{}');
     return $response->withHeader('Content-Type', 'application/json');
-});
+});*/
+
+$app->get('/', HomeAction::class);
+ // If non invoable add ':view'
+//$app->get('/', HomeAction::class . ':view');
 
 $app->run();
