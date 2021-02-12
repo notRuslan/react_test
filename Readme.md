@@ -10,3 +10,5 @@ Run and delete
 docker-compose run --rm api-php-cli php -v
 
 docker-compose run --rm api-php-cli copmposer
+
+docker-compose run --rm api-php-cli composer create-project slim/slim-skeleton slim
