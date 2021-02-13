@@ -19,15 +19,16 @@ class HomeAction implements RequestHandlerInterface
      */
     private ResponseFactoryInterface $factory;
 
-    public function __construct(ResponseFactoryInterface $factory)
+   /* public function __construct(ResponseFactoryInterface $factory)
     {
         $this->factory = $factory;
-    }
+    }*/
 
     public function handle(ServerRequestInterface  $request) :ResponseInterface
     {
-        $response = $this->factory->createResponse();
-        return Http::json($response, new stdClass());
+        /*$response = $this->factory->createResponse();
+        return Http::json($response, new stdClass());*/
+        return new JsonResponse(new stdClass());
     }
 
 
