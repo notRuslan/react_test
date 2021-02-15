@@ -13,3 +13,7 @@ docker-compose run --rm api-php-cli copmposer
 
 docker-compose run --rm api-php-cli composer create-project slim/slim-skeleton slim
 docker-compose run --rm api-php-cli composer require slim/slim slim/psr7
+
+
+none interactive only!
+docker-compose run --rm api-php-cli composer app hello

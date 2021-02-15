@@ -21,7 +21,7 @@ docker-build:
 api-init: api-composer-install
 
 api-composer-install:
-	docker-compose run --rm api-php-cli  composer install
+	docker-compose run --rm api-php-cli composer install
 
 
 build: build-gateway build-frontend build-api
