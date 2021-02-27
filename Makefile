@@ -1,3 +1,6 @@
+include .env
+export
+
 init: docker-down-clear docker-pull docker-build docker-up api-init
 up: docker-up
 down: docker-down
@@ -11,6 +14,10 @@ docker-down:
 
 docker-down-clear:
 	docker-compose down -v --remove-orphans
+
+clean:
+	docker system prune -af
+	#docker-compose down -v --rmi all --remove-orphans
 
 docker-pull:
 	docker-compose pull
