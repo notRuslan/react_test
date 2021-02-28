@@ -11,7 +11,7 @@ use Slim\App;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
 /**
- * @coversNothing
+ *
  */
 class WebTestCase extends TestCase
 {

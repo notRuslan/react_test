@@ -7,7 +7,7 @@ namespace Test\Functional;
 /**
  * Class HomeTest
  * @package Test\Functional
- * @coversNothing
+ *
  */
 class HomeTest extends WebTestCase
 {
