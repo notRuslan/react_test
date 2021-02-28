@@ -11,7 +11,7 @@ use stdClass;
 
 
 /**
- * @covers JsonResponse
+ * @covers \App\Http\JsonResponse
  * Class JsonResponseTest
  * @package Test\Unit\Http
  */
@@ -19,7 +19,7 @@ class JsonResponseTest extends TestCase
 {
 
     /**
-     * @covers ::publicMethod
+     * @covers::testIntWithCode
      */
     public function testIntWithCode():void
     {

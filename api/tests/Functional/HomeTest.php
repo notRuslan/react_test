@@ -7,10 +7,17 @@ namespace Test\Functional;
 /**
  * Class HomeTest
  * @package Test\Functional
- * @covers Home
+ * @coversNothing
  */
 class HomeTest extends WebTestCase
 {
+    public function testMethod(): void
+    {
+        $response = $this->app()->handle(self::json('POST', '/'));
+
+        self::assertEquals(405, $response->getStatusCode());
+    }
+
     public function testSuccess(): void
     {
         $response = $this->app()->handle(self::json('GET', '/'));

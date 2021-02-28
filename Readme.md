@@ -55,6 +55,11 @@ HOST=deploy@demo-auction.greenpanthera.com PORT=22 REGISTRY=registry-1.docker.io
 
 
 docker-compose run api-php-cli ./vendor/bin/phpunit --generate-configuration
+-- Run tests --
+docker-compose run --rm api-php-cli composer test
+docker-compose run --rm api-php-cli composer test -- --filter=Functional
+docker-compose run --rm api-php-cli composer test -- --filter=Unit
 
-
+docker-compose run --rm api-php-cli composer test -- --testsuite=functional
+docker-compose run --rm api-php-cli composer test -- --testsuite=unit
 
