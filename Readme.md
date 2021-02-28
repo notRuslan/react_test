@@ -54,5 +54,7 @@ HOST=deploy@demo-auction.greenpanthera.com PORT=22 REGISTRY=registry-1.docker.io
 ./vendor/bin/psalm --init src 1   // 1 strong level ( from 1 (strong) to 8 (light) )
 
 
+docker-compose run api-php-cli ./vendor/bin/phpunit --generate-configuration
+
 
 
