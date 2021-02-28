@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App;
-
 
 use Psr\Http\Message\ResponseInterface;
 
@@ -14,4 +12,3 @@ class Http
         return $response->withHeader('Content-Type', 'application/json');
     }
 }
-

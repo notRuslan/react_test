@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Action;
-
 
 use App\Http\JsonResponse;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -24,12 +22,10 @@ class HomeAction implements RequestHandlerInterface
         $this->factory = $factory;
     }*/
 
-    public function handle(ServerRequestInterface  $request) :ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         /*$response = $this->factory->createResponse();
         return Http::json($response, new stdClass());*/
         return new JsonResponse(new stdClass());
     }
-
-
 }
