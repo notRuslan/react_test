@@ -4,7 +4,7 @@
 namespace App\Http\Action;
 
 
-use App\Http;
+use App\Http\JsonResponse;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,7 +17,7 @@ class HomeAction implements RequestHandlerInterface
     /**
      * @var ResponseFactoryInterface
      */
-    private ResponseFactoryInterface $factory;
+//    private ResponseFactoryInterface $factory;
 
    /* public function __construct(ResponseFactoryInterface $factory)
     {

@@ -28,3 +28,19 @@ docker pull myrepo.mydomain.com/auction-gateway:${IMAGE_TAG}
 
 REGISTRY=fitter73 IMAGE_TAG=master-1 make build
 docker push fitter73/auction-api-php-cli:master-1
+
+
+Console commnds:
+
+docker-compose run api-php-cli php bin/app.php
+docker-compose run api-php-cli php bin/app.php hello
+
+composer.json:
+"scripts": {
+        "app" : "php bin/app.php --ansi"
+    }
+--ansi  // - Colored output
+
+docker-compose run api-php-cli composer app // Run like --no-interection
+
+

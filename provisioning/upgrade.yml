@@ -1,0 +1,36 @@
+---
+-   name: Upgrade
+    hosts: site
+    remote_user: ruslan
+    become: yes
+    tasks:
+#        -   name: Update APT package cache
+#            apt:
+#                update_cache: yes
+#
+#        -   name: Upgrade APT to the latest packages
+#            apt:
+#                upgrade: dist
+#
+#        -   name: Remove useless packages
+#            apt:
+#                autoclean: yes
+#
+#        -   name: Remove useless dependencies
+#            apt:
+#                autoremove: yes
+
+
+#        - name: Update YUM package cache
+#          yum:
+#              name: '*'
+#              state: latest
+#              exclude: kernel*
+
+        - name: Update YUM  and package cache
+          yum:
+              name: '*'
+              state: latest
+              exclude: kernel*
+              update_cache: yes
+

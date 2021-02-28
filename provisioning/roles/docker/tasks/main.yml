@@ -45,6 +45,6 @@
 - name: Set periodic Docker prune, Delete all garbadge older than 30days
   cron:
     name: docker-prune
-    job: 'docker system prune -f --filter "until=$((30*24))h"'
+    job: 'docker system prune -fa --filter "until=$((30*24))h"'
     minute: '0'
     hour: '1'

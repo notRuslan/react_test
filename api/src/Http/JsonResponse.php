@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Action;
+namespace App\Http;
 
 
 use Slim\Psr7\Factory\StreamFactory;

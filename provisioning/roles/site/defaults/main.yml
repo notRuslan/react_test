@@ -1,4 +1,2 @@
-certbot_email: ruslangr@yahoo.com
-certbot_hosts:
-    - demo-auction.greenpanthera.com
-    - api.demo-auction.greenpanthera.com
+---
+
