@@ -50,4 +50,9 @@ docker push fitter73/auction-api-php-cli:master-1
 HOST=deploy@demo-auction.greenpanthera.com PORT=22 REGISTRY=registry-1.docker.io IMAGE_TAG=master-1 BUILD_NUMBER=1 make deploy
 
 
+--- Create psalm.xls ----
+./vendor/bin/psalm --init src 1   // 1 strong level ( from 1 (strong) to 8 (light) )
+
+
+
 
