@@ -4,6 +4,7 @@ make try-build
 REGISTRY=registty.mysite.com IMAGE_TAG=master-1 make build
 docker push registty.mysite.com/auction-api:master-1
 
+REGISTRY=registry-1.docker.io IMAGE_TAG=master-1 BUILD_NUMBER=1 make build
 
 
 Run and delete
@@ -26,9 +27,11 @@ docker login myrepo.mydomain.com
 
 docker pull myrepo.mydomain.com/auction-gateway:${IMAGE_TAG}
 
-REGISTRY=fitter73 IMAGE_TAG=master-1 make build
+
+
 docker push fitter73/auction-api-php-cli:master-1
 
+HOST=deploy@demo-auction.greenpanthera.com PORT=22 REGISTRY=registry-1.docker.io IMAGE_TAG=master-1 BUILD_NUMBER=1 make deploy
 
 Console commnds:
 
@@ -40,7 +43,11 @@ composer.json:
         "app" : "php bin/app.php --ansi"
     }
 --ansi  // - Colored output
-
+#####
 docker-compose run api-php-cli composer app // Run like --no-interection
+REGISTRY=registry-1.docker.io IMAGE_TAG=master-1 BUILD_NUMBER=1 make build
+docker push fitter73/auction-api-php-cli:master-1
+HOST=deploy@demo-auction.greenpanthera.com PORT=22 REGISTRY=registry-1.docker.io IMAGE_TAG=master-1 BUILD_NUMBER=1 make deploy
+
 
 

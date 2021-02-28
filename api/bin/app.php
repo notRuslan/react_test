@@ -13,7 +13,6 @@ require __DIR__ . '/../vendor/autoload.php';
 $container = require __DIR__ . '/../config/container.php';
 
 $cli = new Application('Console');
-
 //$cli->add($container->get(HelloCommand::class));
 $commands = $container->get('config')['console']['commands'];
 
