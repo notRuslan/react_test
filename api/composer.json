@@ -24,7 +24,7 @@
         }
     },
     "scripts": {
-        "lint": "phplint --no-cache",
+        "lint": "phplint",
         "lint_php": "find bin config public src -name \"*.php\" -print0 | xargs -0 -n1 php -l",
         "app" : "php bin/app.php --ansi"
     }
