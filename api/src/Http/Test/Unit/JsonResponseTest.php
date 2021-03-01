@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Unit\Http;
 
-
 use App\Http\JsonResponse;
 use PHPUnit\Framework\TestCase;
 use stdClass;
-
 
 /**
  * @covers \App\Http\JsonResponse
@@ -21,11 +19,11 @@ class JsonResponseTest extends TestCase
     /**
      * @covers::testIntWithCode
      */
-    public function testIntWithCode():void
+    public function testIntWithCode(): void
     {
         $response = new JsonResponse(12, 201);
         self::assertEquals('application/json', $response->getHeaderLine('Content-Type'));
-        self::assertEquals('12', (string)$response->getBody()->getContents());
+        self::assertEquals('12', $response->getBody()->getContents());
         self::assertEquals('201', $response->getStatusCode());
     }
 
@@ -41,10 +39,10 @@ class JsonResponseTest extends TestCase
      * @test // use if not start from test
      *
      */
-    public function testInt():void
+    public function testInt(): void
     {
         $response = new JsonResponse(12);
-        self::assertEquals('12', (string)$response->getBody()->getContents());
+        self::assertEquals('12', $response->getBody()->getContents());
         self::assertEquals('200', $response->getStatusCode());
     }
 
@@ -80,6 +78,7 @@ class JsonResponseTest extends TestCase
     }
 
 // Advanced tests
+
     /**
      * @dataProvider getCases
      * @param mixed $source
@@ -119,5 +118,4 @@ class JsonResponseTest extends TestCase
             'array' => [$array, '{"str":"value","int":1,"none":null}'],
         ];
     }
-
 }
