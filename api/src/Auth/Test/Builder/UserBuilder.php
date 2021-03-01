@@ -36,9 +36,6 @@ class UserBuilder
         return $clone;
     }
 
-    /** Для имутабельности возращаем клон
-     * @return $this
-     */
     public function active(): self
     {
         $clone = clone $this;
@@ -48,7 +45,7 @@ class UserBuilder
 
     public function build(): User
     {
-        $user = new User(
+        $user = User::requestJoinByEmail(
             $this->id,
             $this->date,
             $this->email,
