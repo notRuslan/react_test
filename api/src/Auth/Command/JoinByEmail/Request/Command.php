@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Auth\Command\JoinByEmail\Request;
 
 /** Class like DTO
@@ -13,5 +12,4 @@ class Command
 
     public string $email = '';
     public string $password = '';
-
 }

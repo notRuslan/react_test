@@ -6,9 +6,9 @@ namespace App\Auth\Service;
 
 use RuntimeException;
 use Webmozart\Assert\Assert;
+
 use function password_hash;
 use function password_verify;
-
 
 class PasswordHasher
 {
