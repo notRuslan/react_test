@@ -12,8 +12,6 @@ use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-use function self;
-
 /**
  * @covers User
  */

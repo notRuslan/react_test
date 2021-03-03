@@ -16,45 +16,54 @@ use stdClass;
 class JsonResponseTest extends TestCase
 {
 
+    public function testWithCode(): void
+    {
+        $response = new JsonResponse(0, 201);
+
+        self::assertEquals('application/json', $response->getHeaderLine('Content-Type'));
+        self::assertEquals('0', $response->getBody()->getContents());
+        self::assertEquals(201, $response->getStatusCode());
+    }
+
     /**
      * @covers::testIntWithCode
      */
-    public function testIntWithCode(): void
+   /* public function testIntWithCode(): void
     {
         $response = new JsonResponse(12, 201);
         self::assertEquals('application/json', $response->getHeaderLine('Content-Type'));
         self::assertEquals('12', $response->getBody()->getContents());
         self::assertEquals('201', $response->getStatusCode());
-    }
+    }*/
 
-    public function testNull(): void
+    /*public function testNull(): void
     {
         $response = new JsonResponse(null);
 
         self::assertEquals('null', $response->getBody()->getContents());
         self::assertEquals(200, $response->getStatusCode());
-    }
+    }*/
 
     /**
      * @test // use if not start from test
      *
      */
-    public function testInt(): void
+    /*public function testInt(): void
     {
         $response = new JsonResponse(12);
         self::assertEquals('12', $response->getBody()->getContents());
         self::assertEquals('200', $response->getStatusCode());
-    }
+    }*/
 
-    public function testString(): void
+   /* public function testString(): void
     {
         $response = new JsonResponse('12');
 
         self::assertEquals('"12"', $response->getBody()->getContents());
         self::assertEquals(200, $response->getStatusCode());
-    }
+    }*/
 
-    public function testObject(): void
+   /* public function testObject(): void
     {
         $object = new stdClass();
         $object->str = 'value';
@@ -65,9 +74,9 @@ class JsonResponseTest extends TestCase
 
         self::assertEquals('{"str":"value","int":1,"none":null}', $response->getBody()->getContents());
         self::assertEquals(200, $response->getStatusCode());
-    }
+    }*/
 
-    public function testArray(): void
+    /*public function testArray(): void
     {
         $array = ['str' => 'value', 'int' => 1, 'none' => null];
 
@@ -75,7 +84,7 @@ class JsonResponseTest extends TestCase
 
         self::assertEquals('{"str":"value","int":1,"none":null}', $response->getBody()->getContents());
         self::assertEquals(200, $response->getStatusCode());
-    }
+    }*/
 
 // Advanced tests
 
