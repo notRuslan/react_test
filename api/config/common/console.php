@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-use App\Console\HelloCommand;
+use App\Console;
+use Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand;
 
 return [
     'config' => [
         'console' => [
             'commands' => [
-                HelloCommand::class,
-            ]
-        ]
-    ]
+                Console\HelloCommand::class,
+                ValidateSchemaCommand::class,
+            ],
+        ],
+    ],
 ];
