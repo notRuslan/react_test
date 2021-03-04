@@ -63,3 +63,9 @@ docker-compose run --rm api-php-cli composer test -- --filter=Unit
 docker-compose run --rm api-php-cli composer test -- --testsuite=functional
 docker-compose run --rm api-php-cli composer test -- --testsuite=unit
 
+docker-compose run --rm api-php-cli composer app orm:validate-schema
+ docker-compose run --rm api-php-cli composer app orm:schema-tool:drop -
+- --force
+
+docker-compose run --rm api-php-cli composer app migrations:diff
+docker-compose run --rm api-php-cli composer app migrations:migrate
