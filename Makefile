@@ -38,7 +38,8 @@ docker-build:
 api-clear:
 	docker run --rm -v ${PWD}/api:/app -w /app alpine sh -c 'rm -rf var/*'
 
-api-init: api-permissions api-composer-install api-wait-db api-migrations
+api-init: api-composer-install api-wait-db api-migrations api-fixtures
+#api-init: api-permissions api-composer-install api-wait-db api-migrations api-fixtures
 
 api-wait-db:
 	docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 30
@@ -51,7 +52,10 @@ api-composer-install:
 	docker-compose run --rm api-php-cli composer install
 
 api-migrations:
-	docker-compose run --rm api-php-cli composer app migrations:migrate
+	docker-compose run --rm api-php-cli composer app migrations:migrate -- --no-interaction
+
+api-fixtures:
+	docker-compose run --rm api-php-cli composer app fixtures:load
 
 api-validate-schema:
 	docker-compose run --rm api-php-cli composer app orm:validate-schema
