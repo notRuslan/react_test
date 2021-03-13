@@ -36,17 +36,17 @@ docker-build:
 	docker-compose build
 
 api-clear:
-	docker run --rm -v ${PWD}/api:/app -w /app alpine sh -c 'rm -rf var/*'
+	docker run --rm -v ${PWD}/api:/app -w /app alpine sh -c 'rm -rf var/cache/* var/log/*'
 
-api-init: api-composer-install api-wait-db api-migrations api-fixtures
-#api-init: api-permissions api-composer-install api-wait-db api-migrations api-fixtures
+#api-init: api-composer-install api-wait-db api-migrations api-fixtures
+api-init: api-permissions api-composer-install api-wait-db api-migrations api-fixtures
 
 api-wait-db:
 	docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 30
 
 
 api-permissions:
-	docker run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var
+	docker run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var/cache var/log
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
@@ -126,10 +126,13 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_PORT=${API_MAILER_PORT}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_USER=${API_MAILER_USER}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "API_MAILER_PASSWORD=${API_MAILER_PASSWORD}" >> .env'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && echo "SENTRY_DSN=${SENTRY_DSN}" >> .env'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose pull'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --build -d api-postgres'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 60'
-	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run --rm api-php-cli php bin/app.php migrations:migrate --no-interaction'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --build -d api-postgres api-php-cli'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run api-php-cli wait-for-it api-postgres:5432 -t 60'
+	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run api-php-cli php bin/app.php migrations:migrate --no-interaction'
+	#ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 60'
+	#ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose run --rm api-php-cli php bin/app.php migrations:migrate --no-interaction'
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
 	#ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --force-recreate --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f site'

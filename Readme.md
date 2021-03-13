@@ -69,3 +69,10 @@ docker-compose run --rm api-php-cli composer app orm:validate-schema
 
 docker-compose run --rm api-php-cli composer app migrations:diff
 docker-compose run --rm api-php-cli composer app migrations:migrate
+
+
+docker-compose logs
+docker-compose logs api-php-fpm  //for one srvice
+docker logs auction_api-php-fpm_1  //for one container
+
+docker-compose logs -f //like tail -f

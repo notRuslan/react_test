@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use stdClass;
+use function file_put_contents;
 
 class HomeAction implements RequestHandlerInterface
 {
@@ -26,6 +27,8 @@ class HomeAction implements RequestHandlerInterface
     {
         /*$response = $this->factory->createResponse();
         return Http::json($response, new stdClass());*/
+//        file_put_contents('php://stdout', 'Success_');
+//        file_put_contents('php://stderr', 'Error_');
         return new JsonResponse(new stdClass());
     }
 }
