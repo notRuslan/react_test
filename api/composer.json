@@ -9,10 +9,12 @@
     "require": {
         "php": "^7.4",
         "ext-json": "^7.4",
+        "dms/phpunit-arraysubset-asserts": "^0.2.1",
         "doctrine/data-fixtures": "^1.5",
         "doctrine/migrations": "^2.2",
         "doctrine/orm": "^2.8",
         "finesse/swiftmailer-defaults-plugin": "^2.0",
+        "guzzlehttp/guzzle": "^7.2",
         "laminas/laminas-config-aggregator": "^1.4",
         "monolog/monolog": "^2.2",
         "php-di/php-di": "^6.3",
