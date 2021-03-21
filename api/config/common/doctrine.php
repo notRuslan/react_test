@@ -6,6 +6,7 @@ use App\Auth;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Common\EventManager;
+use Doctrine\Common\EventSubscriber;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,6 +24,7 @@ return [
          *     proxy_dir:string,
          *     cache_dir:?string,
          *     types:array<string,string>,
+         *     subscribers:string[],
          *     connection:array
          * } $settings
          */
@@ -81,7 +83,6 @@ return [
                 Auth\Entity\User\EmailType::NAME => Auth\Entity\User\EmailType::class,
                 Auth\Entity\User\RoleType::NAME => Auth\Entity\User\RoleType::class,
                 Auth\Entity\User\StatusType::NAME => Auth\Entity\User\StatusType::class,
-
             ],
         ],
     ],

@@ -76,3 +76,8 @@ docker-compose logs api-php-fpm  //for one srvice
 docker logs auction_api-php-fpm_1  //for one container
 
 docker-compose logs -f //like tail -f
+----
+Accept-Language: ru_RU;q=0.9, ru;q=0.8, *;q=0.5
+    show language ru_RU with priority 0.9
+        ru with priority 0.8
+            * with priority 0.5

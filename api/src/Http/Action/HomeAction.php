@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use stdClass;
+
 use function file_put_contents;
 
 class HomeAction implements RequestHandlerInterface
