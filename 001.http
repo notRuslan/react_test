@@ -15,8 +15,19 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "email": "new-user@app.tes",
-  "password": "new-password"
+  "email": "new-user@app.test",
+  "password": ""
+}
+
+###
+
+POST http://localhost:8081/v1/auth/join
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+{
+  "email": "new-user@app.test",
+  "password": ""
 }
 
 ###
