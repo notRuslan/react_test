@@ -10,6 +10,7 @@ lint: api-lint
 analyze: api-analyze
 validate-schema: api-validate-schema
 test: api-test api-fixtures
+test-dox: api-test-testdox api-fixtures
 test-coverage: api-test-coverage
 test-unit: api-test-unit
 test-unit-coverage: api-test-unit-coverage
@@ -69,6 +70,9 @@ api-analyze:
 
 api-test:
 	docker-compose run --rm api-php-cli composer test
+
+api-test-testdox:
+	docker-compose run --rm api-php-cli composer test-dox
 
 api-test-unit:
 	docker-compose run --rm api-php-cli composer test -- --testsuite=unit
