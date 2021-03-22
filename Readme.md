@@ -85,3 +85,4 @@ Accept-Language: ru_RU;q=0.9, ru;q=0.8, *;q=0.5
             * with priority 0.5
 
 ----- frontend -----
+docker-compose run --rm frontend-node-cli npx create-react-app react-app
