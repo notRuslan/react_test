@@ -15,15 +15,26 @@
         <!--<testsuite name="default">
             <directory suffix="Test.php">tests</directory>
         </testsuite>-->
-    <testsuite name="unit">
-            <directory suffix="Test.php">src/Http/Test/Unit</directory>
+        <testsuite name="unit">
             <directory suffix="Test.php">src/Auth/Test/Unit</directory>
-            <directory>src/Frontend/Test</directory>
+            <directory suffix="Test.php">src/Frontend/Test/Unit</directory>
+            <directory suffix="Test.php">src/Http/Test/Unit</directory>
         </testsuite>
-     <testsuite name="functional">
+        <testsuite name="functional">
             <directory suffix="Test.php">tests/Functional</directory>
         </testsuite>
     </testsuites>
+
+   <!-- <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+            <exclude>
+                <directory>src/Auth/Test</directory>
+                <directory>src/Frontend/Test</directory>
+                <directory>src/Http/Test</directory>
+            </exclude>
+        </whitelist>
+    </filter>-->
 
     <coverage cacheDirectory="var/cache/.phpunit.cache.code-coverage"
               processUncoveredFiles="true">

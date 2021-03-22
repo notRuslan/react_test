@@ -53,6 +53,8 @@ HOST=deploy@demo-auction.greenpanthera.com PORT=22 REGISTRY=registry-1.docker.io
 --- Create psalm.xls ----
 ./vendor/bin/psalm --init src 1   // 1 strong level ( from 1 (strong) to 8 (light) )
 
+Check one file
+docker-compose run --rm api-php-cli composer psalm /app/src/Http.php
 
 docker-compose run api-php-cli ./vendor/bin/phpunit --generate-configuration
 -- Run tests --
@@ -81,3 +83,5 @@ Accept-Language: ru_RU;q=0.9, ru;q=0.8, *;q=0.5
     show language ru_RU with priority 0.9
         ru with priority 0.8
             * with priority 0.5
+
+----- frontend -----

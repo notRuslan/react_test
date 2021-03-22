@@ -26,5 +26,4 @@ class HomeTest extends WebTestCase
         self::assertEquals('application/json', $response->getHeaderLine('Content-Type'));
         self::assertEquals('{}', (string)$response->getBody());
     }
-
 }
