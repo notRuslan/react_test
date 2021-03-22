@@ -1,7 +1,10 @@
 include .env
 export
 
-init: docker-down-clear api-clear docker-pull docker-build docker-up api-init
+init: docker-down-clear \
+	api-clear frontend-clear \
+	docker-pull docker-build docker-up \
+	api-init frontend-init
 up: docker-up
 down: docker-down
 restart: down up
@@ -89,6 +92,14 @@ api-test-functional-coverage:
 api-test-unit-coverage:
 	docker-compose run --rm api-php-cli composer test-unit-coverage
 
+frontend-clear:
+	docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf build'
+
+frontend-init: frontend-yarn-install
+
+frontend-yarn-install:
+	docker-compose run --rm frontend-node-cli yarn install
+
 build: build-gateway build-frontend build-api
 
 build-gateway:
@@ -108,7 +119,8 @@ try-build:
 push: push-gateway push-frontend push-api
 
 push-gateway:
-	docker push ${REGISTRY}/auction-gateway:${IMAGE_TAG}
+	docker --log-level=debug build --pull --file=gateway/docker/production/nginx/Dockerfile --tag=${REGISTRY}/auction-gateway:${IMAGE_TAG} gateway/docker
+	#docker push ${REGISTRY}/auction-gateway:${IMAGE_TAG}
 
 push-frontend:
 	docker push ${REGISTRY}/auction-frontend:${IMAGE_TAG}
